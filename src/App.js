@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Chart } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement,BarController, Title, Tooltip, Legend } from 'chart.js';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ClipLoader } from 'react-spinners'; // Import the loader
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+ChartJS.register(CategoryScale, LinearScale, BarElement,BarController, Title, Tooltip, Legend);
 
 function App() {
   const [buyerOrders, setBuyerOrders] = useState([]);
@@ -24,8 +26,8 @@ function App() {
     setLoading(prev => ({ ...prev, pending: true, completed: true, chart: true }));
     try {
       const [pendingResponse, completedResponse] = await Promise.all([
-        axios.get('https://ordersmatchingserver.onrender.com/api/orders/pending'),
-        axios.get('https://ordersmatchingserver.onrender.com/api/orders/completed')
+        axios.get('order-matching-system-tio8.vercel.app/api/orders/pending'),
+        axios.get('order-matching-system-tio8.vercel.app/api/orders/completed')
       ]);
   
       const pendingOrders = pendingResponse.data;
@@ -97,7 +99,7 @@ function App() {
 
     setLoading(prev => ({ ...prev, pending: true }));
     try {
-      await axios.post('https://ordersmatchingserver.onrender.com/api/order', {
+      await axios.post('order-matching-system-tio8.vercel.app/api/order', {
         price,
         qty,
         type,
@@ -130,7 +132,9 @@ function App() {
           <div className="col-lg-5 border border-rounded pt-3 mb-3">
             <h4>Pending Orders</h4>
             {loading.pending ? (
-              <p>Loading Pending Orders...</p>
+               <div className="loader-container">
+               <ClipLoader color="#0d6efd" loading={loading.pending} size={50} />
+             </div>
             ) : (
               <div className="row">
                 <div className="col-lg-6">
@@ -224,7 +228,9 @@ function App() {
           <div className="col-lg-3 border border-rounded pt-3 mb-3">
             <h4>Completed Orders</h4>
             {loading.completed ? (
-              <p>Loading Completed Orders...</p>
+               <div className="loader-container">
+               <ClipLoader color="#0d6efd" loading={loading.completed} size={50} />
+             </div>
             ) : (
               <table className="table border border-rounded">
                 <thead>
@@ -251,7 +257,9 @@ function App() {
           <div className="col-lg-12 border border-rounded pt-3 mb-3">
             <h4>Price Chart</h4>
             {loading.chart ? (
-              <p>Loading Chart...</p>
+               <div className="loader">
+               <ClipLoader color="#0d6efd" loading={loading.chart} size={50} />
+             </div>
             ) : (
               <div className="chart-container">
               <Chart
