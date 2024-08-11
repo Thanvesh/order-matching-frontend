@@ -132,7 +132,7 @@ function App() {
           <div className="col-lg-5 border border-rounded pt-3 mb-3">
             <h4>Pending Orders</h4>
             {loading.pending ? (
-               <div className="loader-container">
+               <div className="loader-container ">
                <ClipLoader color="#0d6efd" loading={loading.pending} size={50} />
              </div>
             ) : (

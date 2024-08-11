@@ -7,6 +7,8 @@ body {
   padding: 0;
 }
 
+
+
 /* Navbar */
 .navbar {
   background-color: #141e28;
@@ -254,4 +256,13 @@ form .form-control {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+
+
+.loader-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
