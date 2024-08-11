@@ -24,8 +24,8 @@ function App() {
     setLoading(prev => ({ ...prev, pending: true, completed: true, chart: true }));
     try {
       const [pendingResponse, completedResponse] = await Promise.all([
-        axios.get('http://localhost:5000/api/orders/pending'),
-        axios.get('http://localhost:5000/api/orders/completed')
+        axios.get('https://order-matching-system-zmll.onrender.com/api/orders/pending'),
+        axios.get('https://order-matching-system-zmll.onrender.com/api/orders/completed')
       ]);
   
       const pendingOrders = pendingResponse.data;
@@ -97,7 +97,7 @@ function App() {
 
     setLoading(prev => ({ ...prev, pending: true }));
     try {
-      await axios.post('http://localhost:5000/api/order', {
+      await axios.post('https://order-matching-system-zmll.onrender.com/api/order', {
         price,
         qty,
         type,
