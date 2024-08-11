@@ -257,7 +257,7 @@ function App() {
           <div className="col-lg-12 border border-rounded pt-3 mb-3">
             <h4>Price Chart</h4>
             {loading.chart ? (
-               <div className="loader">
+               <div className="loader-container">
                <ClipLoader color="#0d6efd" loading={loading.chart} size={50} />
              </div>
             ) : (
