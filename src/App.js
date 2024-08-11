@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Chart } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement,BarController, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement,  BarController, Title, Tooltip, Legend } from 'chart.js';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,8 +26,8 @@ function App() {
     setLoading(prev => ({ ...prev, pending: true, completed: true, chart: true }));
     try {
       const [pendingResponse, completedResponse] = await Promise.all([
-        axios.get('order-matching-system-tio8.vercel.app/api/orders/pending'),
-        axios.get('order-matching-system-tio8.vercel.app/api/orders/completed')
+        axios.get('https://order-matching-system-1.onrender.com/api/orders/pending'),
+        axios.get('https://order-matching-system-1.onrender.com/api/orders/completed')
       ]);
   
       const pendingOrders = pendingResponse.data;
@@ -99,7 +99,7 @@ function App() {
 
     setLoading(prev => ({ ...prev, pending: true }));
     try {
-      await axios.post('order-matching-system-tio8.vercel.app/api/order', {
+      await axios.post('https://order-matching-system-1.onrender.com/api/order', {
         price,
         qty,
         type,
