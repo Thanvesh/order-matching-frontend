@@ -264,5 +264,6 @@ form .form-control {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 
 }
